@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movie',
     'webpack_loader',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ STATIC_URL = '/static/'
 # )
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'assets'), # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
 )
 

@@ -8,7 +8,8 @@ from django.conf import settings
 urlpatterns = [
 
     path('movie/', include('movie.urls')),
-    # url(r'^songs/', include('songs.urls')),
     path('admin/', admin.site.urls),
+
+    url(r'^api/v1/', include('api.v1.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
