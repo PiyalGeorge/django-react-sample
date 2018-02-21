@@ -1,0 +1,8 @@
+Django==2.0.2
+psycopg2==2.7.4
+django-webpack-loader==0.5.0
+Pillow==5.0.0
+djangorestframework==3.7.7
+
+#Above much is essential for React-redux-rest-django integration
+
