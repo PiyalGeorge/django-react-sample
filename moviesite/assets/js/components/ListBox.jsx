@@ -1,9 +1,9 @@
 import React from 'react';
-import MovieList from './movielisting.jsx'
+import { connect } from 'react-redux'
 
 import { fetchMovies } from '../actions/movieListActions'
 
-import { connect } from 'react-redux'
+import MovieList from './MovieListing.jsx'
 
 
 @connect((store) => {

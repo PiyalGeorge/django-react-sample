@@ -308,3 +308,32 @@ import logger from "redux-logger", will give you error, because for version issu
 No errors.
 
 Now we have moved react files to js/components. So configure web.config files and remaining files like that.
+
+-------------------------------------------------------------------------------------
+
+I installed below package so that i don't have to rename all 'class' in html tags to 'classname'. 'class' cannot be used with jsx. We get warnings in console.
+Only warnings, not Errors. So this is not necessary. But if you want follow below lines.
+
+command: npm install class-to-classname --save-dev
+
+If you are installing, then add below contents to webpack.config file
+
+module: {
+	loaders: [
+		{
+			test: /\.jsx?$/,
+			exclude: /node_modules/,
+			loader: "class-to-classname"
+		}
+	]
+}
+
+Refer this - https://www.npmjs.com/package/class-to-classname
+
+---------------------------------------------------------------------------------------
+
+Now to navigate from one page to another, We use routers in Reactjs.
+
+command: npm install react-router-dom --save-dev
+
+Followed this - https://www.tutorialspoint.com/reactjs/reactjs_router.htm
