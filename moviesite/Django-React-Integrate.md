@@ -337,3 +337,13 @@ Now to navigate from one page to another, We use routers in Reactjs.
 command: npm install react-router-dom --save-dev
 
 Followed this - https://www.tutorialspoint.com/reactjs/reactjs_router.htm
+
+
+---------------------------------------------------------------------------------------
+
+Once i'm ready with forms in template next is to implement react form submission
+
+Installed redux form package.
+
+command : npm install --save-dev redux-form
+

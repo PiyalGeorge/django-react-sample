@@ -8,11 +8,11 @@ class HomeNavBarRight extends React.Component {
 
         return(
 
-                <Router>
+
                     <div>
                         <ul class="nav navbar-nav flex-child-menu menu-right">
 
-                            <li><Link to={'/add'}>Add Movie</Link></li>
+                            <li><Link to='/add'>Add Movie</Link></li>
 
                             <li class="dropdown first">
                                 <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
@@ -32,7 +32,7 @@ class HomeNavBarRight extends React.Component {
 
 
                     </div>
-                </ Router>
+
             );
     }
 }

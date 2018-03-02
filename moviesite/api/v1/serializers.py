@@ -9,7 +9,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'image', 'rating')
+        fields = ('url', 'id', 'title', 'image', 'rating', 'synopsis')
 
     def get_rating(self, obj):
         rating = floatformat(obj.rating)

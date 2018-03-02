@@ -3,7 +3,8 @@ import React from 'react';
 import HomeNavBar from './HomeNavBar.jsx'
 import HomeSearchBox from './HomeSearchBox.react.js'
 import List from './ListBox.jsx';
-import AddMovieForm from './AddMovieForm.react.js'
+import AddMovieFormContainer from './AddMovieFormContainer.react.js'
+
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ class Home extends React.Component {
 	render(){
 
 		return(
+            <Router>
 
 
 <div>
@@ -110,6 +112,8 @@ class Home extends React.Component {
 {/*<!--end of signup form popup-->*/}
 
 {/*<!-- BEGIN | Header -->*/}
+
+
 <header class="ht-header">
 	<div class="container">
 		<nav class="navbar navbar-default navbar-custom">
@@ -140,6 +144,8 @@ class Home extends React.Component {
 
 	</div>
 </header>
+
+
 {/*<!-- END | Header -->*/}
 
 <div class="hero common-hero">
@@ -151,34 +157,16 @@ class Home extends React.Component {
 	</div>
 </div>
 
-{/*<List />*/}
-
 
         <div>
-            <Router>
+
             <Switch>
-
                 <Route exact path="/" component={List} />
-                <Route path="/add" component={AddMovieForm} />
-                </Switch>
-                </Router>
-            </div>
+                <Route path="/add" component={AddMovieFormContainer} />
+            </Switch>
 
+        </div>
 
-
-
-
-
-
-    {/*
-        <AddMovieForm />
-
-<Router>
-                        <Switch>
-                            <Route exact path='/Add' component={AddMovieForm} />
-                        </Switch>
-                    </ Router>
-*/}
 
 {/*<!-- footer section-->*/}
 <footer class="ht-footer">
@@ -239,6 +227,8 @@ class Home extends React.Component {
 {/*<!-- end of footer section-->*/}
 
 </div>
+
+            </Router>
 		);
 	}
 }

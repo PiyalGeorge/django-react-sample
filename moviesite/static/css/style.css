@@ -5529,8 +5529,8 @@ ul {
 .blog-detail-ct .comment-form h4 {
   margin-bottom: 30px;
 }
-.blog-detail-ct .comment-form form input,
-.blog-detail-ct .comment-form form textarea {
+.blog-detail-ct .comment-form div input,
+.blog-detail-ct .comment-form div textarea {
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
   color: #abb7c4;
@@ -5544,15 +5544,15 @@ ul {
   background: none;
   margin-bottom: 30px;
 }
-.blog-detail-ct .comment-form form input:hover,
-.blog-detail-ct .comment-form form textarea:hover {
+.blog-detail-ct .comment-form div input:hover,
+.blog-detail-ct .comment-form div textarea:hover {
   border: 1px solid #dcf836;
 }
-.blog-detail-ct .comment-form form textarea {
+.blog-detail-ct .comment-form div textarea {
   height: 245px;
   padding: 15px;
 }
-.blog-detail-ct .comment-form form input.submit {
+.blog-detail-ct .comment-form div input.submit {
   background-color: #dd003f;
   padding: 0 45px;
   height: 46px;
@@ -7734,8 +7734,8 @@ p.ceb-single {
 .buster-light .blog-detail-ct .cmt-item a.rep-btn:hover {
   color: #dd003f;
 }
-.buster-light .blog-detail-ct .comment-form form input:not(.submit),
-.buster-light .blog-detail-ct .comment-form form textarea:not(.submit) {
+.buster-light .blog-detail-ct .comment-form div input:not(.submit),
+.buster-light .blog-detail-ct .comment-form div textarea:not(.submit) {
   background-color: #f6f7f9;
   border-color: #9ca9b7;
   color: #9ca9b7;
@@ -7743,8 +7743,8 @@ p.ceb-single {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
-.buster-light .blog-detail-ct .comment-form form input:not(.submit):hover,
-.buster-light .blog-detail-ct .comment-form form textarea:not(.submit):hover {
+.buster-light .blog-detail-ct .comment-form div input:not(.submit):hover,
+.buster-light .blog-detail-ct .comment-form div textarea:not(.submit):hover {
   border-color: #dd003f;
 }
 .buster-light .userfav_list .movie-item-style-2 .mv-item-infor .describe {
