@@ -20,50 +20,6 @@ export function addMovies(){
 
     return (dispatch, getState) =>{
 
-        {/*
-        function addMovieData(movieFormData) {
-
-            const movieFormDataSend = movieFormData;
-
-            return fetch("http://127.0.0.1:8000/api/v1/movies/", {
-                method: 'post',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'X-CSRFToken': getCookie('csrftoken')
-                },
-                credentials: 'same-origin',
-                body: JSON.stringify(movieFormDataSend)
-            }).then(response => {
-                    if (response.status >= 200 && response.status < 300) {
-                        console.log("Movie added Successfully");
-                        dispatch({
-                            type: "ADD_MOVIE_SUCCESS",
-                            movieForm,
-                        });
-                    }else{
-                        console.log(response.status);
-                        console.log("Movie adding Failure");
-                    }
-                })
-                .catch((err) => console.log(err));
-        }
-
-        const form = getState().form;
-        const movieForm = {
-            form,
-        }
-
-        const movieFormData = movieForm.form.movieForm.values;
-
-        addMovieData(movieFormData);
-        console.log("add function callllllllllllllllllllll");
-
-    ----------------------------------------------------------------------
-
-        */}
-
-
         const form = getState().form;
         const movieForm = {
             form,

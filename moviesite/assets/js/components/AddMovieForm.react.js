@@ -3,43 +3,53 @@ import { reduxForm, Field } from 'redux-form'
 import { addMovies } from '../actions/AddMovieActions.js'
 
 
-const AddMovieForm = props => {
+class AddMovieForm extends React.Component {
 
-  const {addMovies, fields:{title}, handleSubmit} = props;
+    constructor(props, context){
+        super(props, context);
+    }
 
-  return (
-    <form onSubmit={handleSubmit(addMovies)}>
-        <div class="row">
+    render() {
 
-            <div class="col-md-12 form-it">
-                <label>Movie Title</label>
-                <Field name="title" component="input" type="text" />
-            {/*<input type="text" placeholder="Movie Title" name="title" id="title" {...title} />*/}
+        const {addMovies, fields:{title}, handleSubmit} = this.props;
 
-                <div class="blog-detail-ct">
-                    <div class="comment-form">
-                        <div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Movie Synopsis</label>
-                                    <textarea name="synopsis" id="synopsis" placeholder="Movie Synopsis"></textarea>
+        return (
+
+            <form onSubmit={handleSubmit(addMovies)}>
+                <div class="row">
+
+                    <div class="col-md-12 form-it">
+                        <label>Movie Title</label>
+                        <Field name="title" component="input" type="text" />
+                    {/*<input type="text" placeholder="Movie Title" name="title" id="title" {...title} />*/}
+
+                        <div class="blog-detail-ct">
+                            <div class="comment-form">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Movie Synopsis</label>
+                                            <textarea name="synopsis" id="synopsis" placeholder="Movie Synopsis"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
 
-        </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <input class="submit" type="submit" value="save" />
+                     </div>
+                 </div>
+            </form>
 
-        <div class="row">
-            <div class="col-md-2">
-                <input class="submit" type="submit" value="save" />
-             </div>
-         </div>
-    </form>
-  )
+            )
+
+    }
+
 }
-
 
 export default reduxForm({ form: 'movieForm', fields: ['title'] })( AddMovieForm )
