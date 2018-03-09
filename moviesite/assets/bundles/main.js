@@ -7157,17 +7157,24 @@ function addMovies() {
             form: form
         };
 
-        var movieFormDataSend = movieForm.form.movieForm.values;
+        var movieValues = movieForm.form.movieForm.values;
 
-        fetch("http://127.0.0.1:8000/api/v1/movies/", {
+        var formData = new FormData();
+        formData.append("title", movieValues.title);
+        if (movieValues.image) {
+            formData.append("image", movieValues.image);
+        }
+
+        var status = fetch("http://127.0.0.1:8000/api/v1/movies/", {
             method: 'post',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                //                  'Accept': 'application/json',
+                //                  'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
             credentials: 'same-origin',
-            body: JSON.stringify(movieFormDataSend)
+            //                body: JSON.stringify(movieValues)
+            body: formData
         }).then(function (response) {
             if (response.status >= 200 && response.status < 300) {
                 console.log("Movie added Successfully");
@@ -7175,13 +7182,18 @@ function addMovies() {
                     type: "ADD_MOVIE_SUCCESS",
                     movieForm: movieForm
                 });
+                return true;
             } else {
                 console.log(response.status);
                 console.log("Movie adding Failure");
+                return false;
             }
         }).catch(function (err) {
-            return console.log(err);
+            console.log(err);
+            return false;
         });
+
+        return status;
     };
 }
 
@@ -34755,17 +34767,6 @@ var Home = function (_React$Component) {
 					null,
 					_react2.default.createElement(
 						'div',
-						{ id: 'preloader' },
-						_react2.default.createElement('img', { className: 'logo', src: '/static/images/logo1.png', alt: '', width: '119', height: '58' }),
-						_react2.default.createElement(
-							'div',
-							{ id: 'status' },
-							_react2.default.createElement('span', null),
-							_react2.default.createElement('span', null)
-						)
-					),
-					_react2.default.createElement(
-						'div',
 						{ className: 'login-wrapper', id: 'login-content' },
 						_react2.default.createElement(
 							'div',
@@ -34961,11 +34962,6 @@ var Home = function (_React$Component) {
 											_react2.default.createElement('span', null),
 											_react2.default.createElement('span', null)
 										)
-									),
-									_react2.default.createElement(
-										'a',
-										{ href: 'index.html' },
-										_react2.default.createElement('img', { className: 'logo', src: '/static/images/logo1.png', alt: '', width: '119', height: '58' })
 									)
 								),
 								_react2.default.createElement(_HomeNavBar2.default, null)
@@ -40113,6 +40109,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -40124,6 +40122,8 @@ var _reduxForm = __webpack_require__(47);
 var _AddMovieActions = __webpack_require__(130);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -40137,21 +40137,120 @@ var AddMovieForm = function (_React$Component) {
     function AddMovieForm(props, context) {
         _classCallCheck(this, AddMovieForm);
 
-        return _possibleConstructorReturn(this, (AddMovieForm.__proto__ || Object.getPrototypeOf(AddMovieForm)).call(this, props, context));
+        var _this = _possibleConstructorReturn(this, (AddMovieForm.__proto__ || Object.getPrototypeOf(AddMovieForm)).call(this, props, context));
+
+        _this.state = {
+            formStatus: false,
+            validTitle: null,
+            submitButtonDisable: true
+        };
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.validataTitle = _this.validataTitle.bind(_this);
+        {/* this.state = {file: '',imagePreviewUrl: ''}; */}
+        return _this;
     }
 
+    /*
+    handleImageChange(e) {
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+          this.setState({
+            file: file,
+            imagePreviewUrl: reader.result
+          });
+        }
+        reader.readAsDataURL(file)
+    }
+    */
+
     _createClass(AddMovieForm, [{
+        key: 'validataTitle',
+        value: function validataTitle(event) {
+            var title = event.target.value;
+            var validTitle, submitButtonDisable;
+            var styles = {
+                color: 'red'
+            };
+
+            if (!title || title == "") {
+                validTitle = _react2.default.createElement(
+                    'div',
+                    { style: styles },
+                    'Required Field'
+                );
+                submitButtonDisable = true;
+            } else {
+                validTitle = null;
+                submitButtonDisable = false;
+            }
+            this.setState({ validTitle: validTitle, submitButtonDisable: submitButtonDisable });
+            return submitButtonDisable;
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            var _this2 = this;
+
+            console.log("This is submit function");
+            this.props.addMovies().then(function (result) {
+                _this2.setState({ formStatus: result });
+                setTimeout(function () {
+                    this.setState({ formStatus: false });
+                }.bind(_this2), 7000);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             var _props = this.props,
                 addMovies = _props.addMovies,
                 title = _props.fields.title,
                 handleSubmit = _props.handleSubmit;
 
 
+            var disabled = "disabled";
+            var submitStatus = {
+                color: 'red'
+            };
+
+            {/*
+                   let {imagePreviewUrl} = this.state;
+                   let imagePreview = null;
+                   if (imagePreviewUrl) {
+                     imagePreview = (<img src={imagePreviewUrl} />);
+                   } else {
+                     imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+                   }
+                */}
+
+            var adaptFileEventToValue = function adaptFileEventToValue(delegate) {
+                return function (e) {
+                    return delegate(e.target.files[0]);
+                };
+            };
+
+            var FileInput = function FileInput(_ref) {
+                var _ref$input = _ref.input,
+                    omitValue = _ref$input.value,
+                    onChange = _ref$input.onChange,
+                    onBlur = _ref$input.onBlur,
+                    inputProps = _objectWithoutProperties(_ref$input, ['value', 'onChange', 'onBlur']),
+                    omitMeta = _ref.meta,
+                    props = _objectWithoutProperties(_ref, ['input', 'meta']);
+
+                return _react2.default.createElement('input', _extends({
+                    onChange: adaptFileEventToValue(onChange),
+                    onBlur: adaptFileEventToValue(onBlur),
+                    type: 'file'
+                }, inputProps, props));
+            };
+
             return _react2.default.createElement(
                 'form',
-                { onSubmit: handleSubmit(addMovies) },
+                { onSubmit: handleSubmit(this.handleSubmit) },
                 _react2.default.createElement(
                     'div',
                     { className: 'row' },
@@ -40163,7 +40262,10 @@ var AddMovieForm = function (_React$Component) {
                             null,
                             'Movie Title'
                         ),
-                        _react2.default.createElement(_reduxForm.Field, { name: 'title', component: 'input', type: 'text' }),
+                        _react2.default.createElement(_reduxForm.Field, { name: 'title', component: 'input', type: 'text', onChange: function onChange(e) {
+                                return _this3.validataTitle(e);
+                            } }),
+                        this.state.validTitle,
                         _react2.default.createElement(
                             'div',
                             { className: 'blog-detail-ct' },
@@ -40189,7 +40291,8 @@ var AddMovieForm = function (_React$Component) {
                                     )
                                 )
                             )
-                        )
+                        ),
+                        _react2.default.createElement(_reduxForm.Field, { name: 'image', component: FileInput })
                     )
                 ),
                 _react2.default.createElement(
@@ -40198,9 +40301,19 @@ var AddMovieForm = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-2' },
-                        _react2.default.createElement('input', { className: 'submit', type: 'submit', value: 'save' })
+                        _react2.default.createElement('input', { className: 'submit', type: 'submit', value: 'save', disabled: this.state.submitButtonDisable ? disabled : "" })
                     )
-                )
+                ),
+                _react2.default.createElement('p', null),
+                this.state.formStatus ? _react2.default.createElement(
+                    'div',
+                    { style: submitStatus },
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        'Movie added Successfully'
+                    )
+                ) : null
             );
         }
     }]);

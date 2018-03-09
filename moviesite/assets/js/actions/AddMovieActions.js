@@ -25,17 +25,24 @@ export function addMovies(){
             form,
         }
 
-        const movieFormDataSend = movieForm.form.movieForm.values;
+        const movieValues = movieForm.form.movieForm.values;
 
-        fetch("http://127.0.0.1:8000/api/v1/movies/", {
+        var formData = new FormData();
+        formData.append("title", movieValues.title);
+        if (movieValues.image) {
+        formData.append("image", movieValues.image);
+        }
+
+        const status = fetch("http://127.0.0.1:8000/api/v1/movies/", {
                 method: 'post',
                 headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
+//                  'Accept': 'application/json',
+//                  'Content-Type': 'application/json',
                   'X-CSRFToken': getCookie('csrftoken')
                 },
                 credentials: 'same-origin',
-                body: JSON.stringify(movieFormDataSend)
+//                body: JSON.stringify(movieValues)
+                body: formData
             }).then(response => {
                     if (response.status >= 200 && response.status < 300) {
                         console.log("Movie added Successfully");
@@ -43,13 +50,19 @@ export function addMovies(){
                             type: "ADD_MOVIE_SUCCESS",
                             movieForm,
                         });
+                        return true;
                     }else{
                         console.log(response.status);
                         console.log("Movie adding Failure");
+                        return false;
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    return false;
+                });
 
+        return status;
     }
 
 }
