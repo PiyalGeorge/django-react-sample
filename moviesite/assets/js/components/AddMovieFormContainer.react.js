@@ -10,14 +10,19 @@ class AddMovieFormContainer extends React.Component {
 
     render() {
 
+    var imageStyle = {top: 1157.33+'px'};
         return(
 
 <div class="page-single">
 	<div class="container">
 		<div class="row ipad-width">
-			<div class="col-md-3 col-sm-12 col-xs-12">
 
+			<div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="movie-img sticky-sb" style={imageStyle}>
+					<img src="http://127.0.0.1:8000/media/movie_poster/images_nHJkNaN.jpeg" alt="" />
+            </div>
 			</div>
+
 			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="form-style-1 user-pro" action="">
 

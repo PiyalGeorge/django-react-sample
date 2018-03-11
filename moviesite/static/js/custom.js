@@ -544,7 +544,7 @@ $(function(){
 
 		      // stop the sticky sidebar at the footer to avoid overlapping
 		      var sidebarBottom = stickySidebar.offset().top + stickyHeight,
-		        stickyStop = mainCt.offset().top + mainCt.height();
+		        stickyStop = mainCt.height();
 		      if (stickyStop < sidebarBottom) {
 		        var stopPosition = mainCt.height() - stickyHeight + 130;
 		        stickySidebar.css('top', stopPosition);

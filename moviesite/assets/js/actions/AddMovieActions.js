@@ -30,7 +30,10 @@ export function addMovies(){
         var formData = new FormData();
         formData.append("title", movieValues.title);
         if (movieValues.image) {
-        formData.append("image", movieValues.image);
+            formData.append("image", movieValues.image);
+        }
+        if (movieValues.synopsis) {
+            formData.append("synopsis", movieValues.synopsis);
         }
 
         const status = fetch("http://127.0.0.1:8000/api/v1/movies/", {

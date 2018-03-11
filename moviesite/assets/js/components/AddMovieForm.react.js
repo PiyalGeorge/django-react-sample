@@ -116,7 +116,7 @@ class AddMovieForm extends React.Component {
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Movie Synopsis</label>
-                                            <textarea name="synopsis" id="synopsis" placeholder="Movie Synopsis"></textarea>
+                                            <Field name="synopsis" component="textarea" placeholder="Movie Synopsis" />
                                         </div>
                                     </div>
                                 </div>

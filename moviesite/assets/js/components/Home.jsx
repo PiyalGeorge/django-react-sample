@@ -4,7 +4,7 @@ import HomeNavBar from './HomeNavBar.jsx'
 import HomeSearchBox from './HomeSearchBox.react.js'
 import List from './ListBox.jsx';
 import AddMovieFormContainer from './AddMovieFormContainer.react.js'
-
+import MovieDetail from './MovieDetail.react.js'
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -163,6 +163,7 @@ class Home extends React.Component {
             <Switch>
                 <Route exact path="/" component={List} />
                 <Route path="/add" component={AddMovieFormContainer} />
+                <Route path="/detail/:movieId" component={MovieDetail} />
             </Switch>
 
         </div>

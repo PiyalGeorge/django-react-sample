@@ -1,17 +1,14 @@
 import { combineReducers } from "redux";
 
 import movieList from "./movieListReducers";
+import movieDetail from "./MovieDetailReducer.js"
 
 import { reducer as formReducer } from 'redux-form';
-
-//export default combineReducers({
-//	movieList
-//}
-//);
 
 
 const reducer = combineReducers({
     movieList,
+    movieDetail,
     form: formReducer,
 });
 
