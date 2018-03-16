@@ -14,8 +14,8 @@ class MovieList extends React.Component {
 	            			</div>
 							<div className="mv-item-infor">
 								<h6><Link to={'/detail/'+this.props.data.id} >{this.props.data.title}</Link></h6>
-								<p className="rate"><i className="ion-android-star"></i>
-								<span>{this.props.data.rating} -{this.props.data.id}</span> /10</p>
+								{this.props.data.rating ?<p className="rate"><i className="ion-android-star"></i>
+								<span>{this.props.data.rating}</span> /10</p>: null}
 							</div>
 						</div>
 							

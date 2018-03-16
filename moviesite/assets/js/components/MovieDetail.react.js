@@ -22,6 +22,18 @@ class MovieDetail extends React.Component {
 
         const { movieDetail } = this.props;
 
+        if (movieDetail.rating>=1) {
+            var ratingStars, j = movieDetail.rating;
+            var k = 10 - ratingStars;
+            var ratingStarsComponent = [];
+            for (j; j>0; j--) {
+                ratingStarsComponent.push(<i key={j} class="ion-ios-star"></i>);
+            }
+            for (k; k>0; k--) {
+                ratingStarsComponent.push(<i key={ratingStars+k} class="ion-ios-star-outline"></i>);
+            }
+        }
+
         var imageStyle = {top: 0+'px'};
         var paddingStyle =  {marginTop: 0+'px'};
 
@@ -44,6 +56,32 @@ class MovieDetail extends React.Component {
 							<div><a href={movieDetail.image} class="item item-2 yellowbtn" download><i class="ion-card"></i></a></div>
 						</div>
                             : null}
+                        <p></p>
+                        <div class="btn-transform transform-vertical red">
+                            <div><a href="#" class="item item-3 redbtn" data-toggle="modal" data-target="#myModal"><i class="ion-card"></i>Delete</a></div>
+						</div>
+
+
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -65,21 +103,18 @@ class MovieDetail extends React.Component {
 					<div class="movie-rate">
 						<div class="rate">
 							<i class="ion-android-star"></i>
-							<p><span>{movieDetail.rating}</span> /10<br/>
+
+                            {movieDetail.rating ?
+							<p> <span>{movieDetail.rating}</span> /10<br/>
 								<span class="rv">56 Reviews</span>
-							</p>
+							</p>: null }
 						</div>
 						<div class="rate-star">
 							<p>Rate This Movie:  </p>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star"></i>
-							<i class="ion-ios-star-outline"></i>
+
+                            {movieDetail.rating ?
+                            ratingStarsComponent:null
+                            }
 						</div>
 					</div>
 					<div class="movie-tabs">
