@@ -1,0 +1,231 @@
+Authorization
+
+1. Authenticated views should only be accessed by an authenticated user. If not authenticated and the URL should redirect to the login page.
+2. Unauthorized content should not be accessed by a user, even if he is logged in.(Eg: On listing my tasks, should only list tasks assigned to me, on typing a detail URL of another task should show 404 or no permission message) - Only Authorized users should access the content.
+3. (Use of login_required, permission_required decorators are used for this. Also, filter content based on users where ever applicable)
+4. If a site is bit confidential, a user should logout automatically after x mins(Maybe after 15mins) idle.
+5. All the API's should be authenticated with auth-token
+
+
+Common
+
+1. Heading should be clear and use proper heading tags like H1, H2 etc.
+2. 400 and 500 pages should be implemented with a proper design.
+3. Use consistent font style and color across the page.
+4. Use meaningful keywords for URL. It will help search engine to fetch data easily.
+5. The page should not show spelling or grammatical errors.
+6. HTML should be validated before integration. You can use W3C validator for this [http://validator.w3.org/].
+7. All the internal links [i.e. pointing to pages of the same website] should be working properly.
+8. If any internal link is broken, then the website should be presented with 404 error page.
+9. All the external links should be opened in new tab.
+10. All the popup should close 1. Using 'x' close button of popup 2. Clicking on the popup 3. Using 'Esc' key Note: Depends on the requirement.
+11. Images should have alt tags.
+12. Make sure all the email integrated have proper content(If not get content from accountable person)
+13. Switch your browsers often when developing a website, so that the cross-browser issues will be identified earlier
+
+
+Contact Form
+
+1. Form should show validation errors
+2. On suceess it should show a success message
+3. The contact details should be saved to the database where admin can access it.
+4. Send contact details to configured email if required(Confirm with PM)
+5. Thanks, mail should send to the user
+
+
+Email/OTP Verification
+
+1. Email - should be saved as unverified initially
+2. Email - Activation link should be used within 3 days. After using it or after 3 days make it expired
+3. Email - Option to resend activation link
+4. OTP - should be valid for x hours based on the application confidentiality.
+5. OTP - Enable resend code after 1minue, resend new code always. Better to just digits.
+6. OTP - should be unique to a user/ mobile number
+
+
+Filter
+
+1. If filter is along with search, apply both simultaneously to the result
+2. Option to clear the filter in one click
+3. Check each filter is working in single and in groups
+4. Check if the drop down's value is changing due to the value of the 1st drop down.
+5. Ajax filtering should be implemented based on the design and application requirement.
+6. Filter should be done using GET request so that the link can be shared with others
+
+
+Forgot Password
+
+1. Show email sent successfully message after sending link
+2. Make sure the link sent to the right email address and the content is correct
+3. Make sure the email contain a hyper link and it should be clickable. Also, provide the user option to copy paste the link.
+4. The link should be expired after 7days or after using it
+5. Show proper validation messages
+6. Password type should be checked(Based on the requirement - if no specific requirement set 8 chars length as base)
+7. Check the user able to log in using new password
+8. Show login hyperlink along with the success message
+9. Should not accept blank spaces
+
+
+Form Rules
+
+1. Must show validations for all the fields(Email, Phone number, URL fields etc)
+2. Show asterisk(*) for required fields
+3. Prevent multiple submit clicks
+4. When the cursor is pointed to a textbox or submit button, on enter submit should be triggered
+5. On server side error, already filled data should be persisted and should show the errors
+6. Textfield placeholder should be visible and readable.
+7. Error messages should be visible, clear and not in truncated form.
+8. Textfield and error messages should be properly aligned.
+9. Error message font size should be in red color, with a font size of 12px and ends with a period.
+10. All the character field should limit the number of character based on the database max_length(Show proper validation message)
+11. The system should show proper validation message for all numeric fields if the user enters alphabets and special characters. i.e. Phone number, zip code, date of birth etc.
+12. System should not allow duplication of mail id
+13. The system should allow the user to select a date from the date picker.
+14. The placeholders of fields should be consistent.
+15. The entered password should be in encrypted form.
+16. User should be able to access the fields using TAB key
+17. Designer should implement sample error message area for all forms
+18. Textfields, Links, Buttons should have hovering effect.
+
+
+Profile
+
+1. Access profile from top bar menu(Normal) - Vary based on design
+2. On register check all the fields are getting saved
+3. Required fields should be populated after social registration(Facebook, Google, Twitter etc)
+4. Edit profile should be available(The user edit permissible details should be edited) - Very based on the requirement
+5. Email verification flow should be present for email login
+6. If email is editable, verification flow should be there for editing
+7. Check the project requirement and implement profile delete if applicable
+8. Check all links on My profile page redirects to the corresponding page
+9. Check the edit profile form populated already existing data.
+10. Check user details are updated correctly in backend
+11. Show validations in edit page
+12. Profile pic- supported image formats need to define
+
+
+Reset Password
+
+1. Old password should be matched for correctness
+2. New password should match the required criteria defined
+3. Password changed email should be triggered to registered email address
+4. Should not accept blank spaces
+5. Check the user able to login with new password
+6. Copy paste should be blocked
+
+
+Search
+
+1. Filter should be done using GET request so that the link can be shared with others
+2. Check keyword search by entering first, middle or last word of any title and verify that it is found in search result
+3. Starting blank space should be trimmed before searching
+4. If no data entered, search shouldn't be triggered
+5. Show result analytics like, "xyz results found matching keyword xxx"
+6. Pagination should be implemented for search result page(On scroll pagination)
+7. Check search is working on clicking “Enter” key instead of clicking “Search” button.
+8. Check if the search results are displayed by popularity or most viewed or any other criteria mentioned in the requirements.
+9. Proper messages should be displayed when there are no results.
+10. If required auto-suggestion should be shown when searching
+11. For an eCommerce website 1.Adding a new item to the system should automatically make it searchable 2.If the title of an existing item is updated, new details should show in search result 3.Deleting an item should remove it from the search result
+12. When filters are present, search term and filter should apply simultaneously
+
+
+Sign In
+
+1. Implement sign in using email by default
+2. After signin redirect to user landing page
+3. Logout option after login
+4. Logged in State:- Clicking on ‘Logout’ should take the user back to Sign In Page.
+5. On selecting back button (after logging out), the system should not direct the user to his/her home page.
+6. Error message if user is not logged in using provided credentials
+7. User should get signed in with email id, entered in the uppercase letter format. [e.g. SAYONE01@GMAIL.COM]
+8. System should allow the user to sign in with white space on leading and trailing end of the input. e.g. Email id [e.g. <SPACE>SAYONE01@GMAIL.COM<SPACE>] Password [ e.g. <SPACE>**********<SPACE>
+9. If the user checks the “Remember me” option, appropriate cookie should be set to auto-login next time
+10. Implement https://github.com/mtrdesign/django-brutebuster if it is highly secured app
+
+
+Sign in via Social Widget
+
+1. The system should direct the user to their home page, after sign in.
+2. Make sure the social login is working in other accounts - other than developer account used
+3. The system should be redirected to the site, if the user denies the social widget login permission using "Cancel" button.
+4. User details of the social widget should get reflected on user home page/profile page. i.e. Profile image, Profile name and mail id etc.
+
+
+Sign Up
+
+1. System should show successful message after signin
+2. The system should shoot an activation mail to registered mail id.
+3. The system should show a proper error message if the user signup with already existing mail id.
+4. After signin user should redirect to the landing page, unless and until specified.
+5. Some website should not allow a non-email verified user login, check the requirement and implement accordingly.
+6. Welcome email should be sent to the user
+
+
+Title and Favicon
+
+1. Check Format of the title bar should be as follows:- Favicon | Page Title | Project Name
+2. Check for all pages and subpages the title of the page is present and is of correct format
+3. Use self-explanatory titles in the <TITLE> tags. These are used by search engine to display in the Search result.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

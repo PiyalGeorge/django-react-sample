@@ -19,7 +19,7 @@ class AddMovieFormContainer extends React.Component {
 
 			<div class="col-md-3 col-sm-12 col-xs-12">
             <div class="movie-img sticky-sb" style={imageStyle}>
-					<img src="http://127.0.0.1:8000/static/images/uploads/poster-not.png" alt="" />
+					<img src="/static/images/uploads/poster-not.png" alt="" />
             </div>
 			</div>
 

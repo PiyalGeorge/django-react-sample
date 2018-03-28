@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { fetchMovieDetails } from "../actions/MovieDetailActions.js"
+import { deleteMovie } from "../actions/DeleteMovieActions.js"
+import { Redirect } from 'react-router'
 
 
 @connect((store) => {
@@ -13,6 +15,28 @@ import { fetchMovieDetails } from "../actions/MovieDetailActions.js"
 
 class MovieDetail extends React.Component {
 
+    constructor(props, context){
+        super(props, context);
+        this.state = {
+            showModal: false,
+            redirectToHome: false
+        }
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+    }
+
+    handleDelete(event){
+        this.props.dispatch(deleteMovie(event)).then(result => {
+            if (result){
+                this.setState({ redirectToHome: true });
+            }
+        });
+    }
+
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
+
     componentWillMount() {
         const {movieId} = this.props.match.params;
         this.props.dispatch(fetchMovieDetails(movieId))
@@ -20,7 +44,7 @@ class MovieDetail extends React.Component {
 
     render() {
 
-        const { movieDetail } = this.props;
+        const { movieDetail, handleDelete } = this.props;
 
         if (movieDetail.rating>=1) {
             var ratingStars, j = movieDetail.rating;
@@ -36,6 +60,11 @@ class MovieDetail extends React.Component {
 
         var imageStyle = {top: 0+'px'};
         var paddingStyle =  {marginTop: 0+'px'};
+        var modalStyle = {top: 60+'px'};
+
+        if (this.state.redirectToHome) {
+            return (<Redirect to="/"/>)
+        }
 
         return (
 
@@ -44,7 +73,7 @@ class MovieDetail extends React.Component {
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb" style={imageStyle}>
-					<img src={movieDetail.image ? movieDetail.image : "http://127.0.0.1:8000/static/images/uploads/poster-not.png"} alt="" />
+					<img src={movieDetail.image ? movieDetail.image : "/static/images/uploads/poster-not.png"} alt="" />
 					<div class="movie-btn">
 						<div class="btn-transform transform-vertical red">
 							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
@@ -64,22 +93,22 @@ class MovieDetail extends React.Component {
 
                       <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
-                          <div class="modal-content">
+                          <div class="modal-content" style={modalStyle}>
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Modal Header</h4>
+                              <h4 class="modal-title">Confirm Delete</h4>
                             </div>
                             <div class="modal-body">
-                              <p>Some text in the modal.</p>
+                              <h5 class="modal-title">Are you sure you want to delete this movie?</h5>
                             </div>
+
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger btn-ok" onClick={()=>this.handleDelete(movieDetail.id)}>Delete</button>
                             </div>
                           </div>
                         </div>
                       </div>
-
-
 
 
 					</div>

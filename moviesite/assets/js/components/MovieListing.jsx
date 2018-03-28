@@ -8,7 +8,7 @@ class MovieList extends React.Component {
          <div>
 
 						<div className="movie-item-style-2 movie-item-style-1">
-							<img src={this.props.data.image} alt="" />
+							<img src={this.props.data.image ? this.props.data.image : "static/images/uploads/Image-not-available.jpg"} alt="" />
 							<div className="hvr-inner">
 							    <Link to={'/detail/'+this.props.data.id} >Read more <i className="ion-android-arrow-dropright"></i></Link>
 	            			</div>
